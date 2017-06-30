@@ -3,5 +3,5 @@
 	$mail_path = __DIR__ . '/log/';
 	@mkdir($mail_path);
 	$input = file_get_contents('php://stdin');
-	$name = time() . '.eml';
+	$name = microtime() . '.eml';
 	file_put_contents($mail_path . $name, $input);
