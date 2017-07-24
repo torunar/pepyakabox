@@ -66,6 +66,7 @@ Not configured, though.
 
 	```
 	$ cd pepyakabox
+	
 	$ vagrant up
 	```
 
