@@ -59,14 +59,15 @@ Not configured, though.
 2. Clone the repo:
 
 	```
-	$ git clone git@bitbucket.org:torunar/pepyakabox.git
+	$ git clone git@bitbucket.org:torunar/pepyakabox.git pepyakabox
 	```
 
 3. Provision the enviroment:
 
 	```
 	$ cd pepyakabox
-
+	```
+	```
 	$ vagrant up
 	```
 
