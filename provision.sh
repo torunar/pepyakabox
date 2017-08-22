@@ -36,7 +36,9 @@ sudo rm -rf /etc/nginx/sites-enabled/*
 cd /etc/nginx/sites-available/
 for i in *
 do
-    sudo ln -s /etc/nginx/sites-available/$i /etc/nginx/sites-enabled/$i
+    if [[ "${i}" != "template" ]]; then
+        sudo ln -s /etc/nginx/sites-available/$i /etc/nginx/sites-enabled/$i
+    fi
 done
 sudo service nginx restart
 

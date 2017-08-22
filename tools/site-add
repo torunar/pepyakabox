@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+host=$1;
+ip=10.4.4.4;
+local_available=$(pwd)/etc/nginx/sites-available;
+remote_cert=/etc/nginx/ssl;
+remote_available=/etc/nginx/sites-available;
+remote_enabled=/etc/nginx/sites-enabled;
+
+# local: copy
+echo 'Copying...'
+cp "${local_available}/template" "${local_available}/${host}";
+# local: replace
+echo 'Replacing...'
+sed -i '' -- "s/template/${host}/g" "${local_available}/${host}";
+# remote: generate cer
+echo 'Generating certs...'
+vagrant ssh -c "sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${remote_cert}/${host}.key -out ${remote_cert}/${host}.crt"
+echo 'Restarting services...'
+cd ~/srv
+vagrant ssh -c "sudo ln -s '${remote_available}/${host}' '${remote_enabled}' && sudo service nginx restart";
+# local: add host
+echo 'Adding host...'
+sudo sh -c "echo '${ip} ${host}' >> /etc/hosts"
+
+echo 'Done!'
