@@ -20,7 +20,7 @@ sudo apt-get install --yes \
 
 for ver in '7.1' '5.6'; do
     sudo apt-get install --yes \
-        php$ver-cli php$ver-mysql php$ver-fpm php$ver-curl php$ver-gd php$ver-xml php$ver-mbstring php$ver-zip php$ver-sqlite3 php$ver-mcrypt php$ver-intl php$ver-soap php$ver-imagick \
+        php$ver-cli php$ver-mysql php$ver-fpm php$ver-curl php$ver-gd php$ver-xml php$ver-mbstring php$ver-zip php$ver-sqlite3 php$ver-mcrypt php$ver-intl php$ver-soap php$ver-imagick php$ver-imap \
         php-xdebug \
         blackfire-agent
 
