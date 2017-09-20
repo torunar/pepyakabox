@@ -14,7 +14,7 @@ Somewhat "universal" config can be found in `/etc/nginx/sites-available/template
 
 Default user: `root`.
 
-Default password: `r0Ot`.
+Default password: `root`.
 
 ### PHP
 

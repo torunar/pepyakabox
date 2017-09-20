@@ -3,8 +3,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 sudo add-apt-repository ppa:ondrej/php
 
-debconf-set-selections <<< 'mysql-server mysql-server/root_password password r0Ot'
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password r0Ot'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
 wget -O - https://packagecloud.io/gpg.key | sudo apt-key add -
 echo "deb http://packages.blackfire.io/debian any main" | sudo tee /etc/apt/sources.list.d/blackfire.list
