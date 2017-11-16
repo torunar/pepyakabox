@@ -24,9 +24,11 @@ for ver in '7.1' '5.6'; do
         php-xdebug \
         blackfire-agent
 
-    sudo sed -i".bak" 's/;sendmail_path =.*/sendmail_path=\/srv\/sendmail\/sendmail/g' /etc/php/$ver/fpm/php.ini
-    sudo sed -i".bak" 's/post_max_size =.*/post_max_size = 1G/g'                       /etc/php/$ver/fpm/php.ini
-    sudo sed -i".bak" 's/upload_max_filesize =.*/upload_max_filesize = 1G/g'           /etc/php/$ver/fpm/php.ini
+    for sapi in 'fpm' 'cli'; do
+        sudo sed -i".bak" 's/;sendmail_path =.*/sendmail_path=\/srv\/sendmail\/sendmail/g' /etc/php/$ver/$sapi/php.ini
+        sudo sed -i".bak" 's/post_max_size =.*/post_max_size = 1G/g'                       /etc/php/$ver/$sapi/php.ini
+        sudo sed -i".bak" 's/upload_max_filesize =.*/upload_max_filesize = 1G/g'           /etc/php/$ver/$sapi/php.ini
+    done
     
     sudo cp /srv/etc/php/mods-available/xdebug.ini /etc/php/$ver/mods-available/xdebug.ini
     sudo service php$ver-fpm restart
