@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
+if [ ! -f  $(pwd)/Vagrantfile -o -z "$1" ]; then
+    echo 'Go to the directory with your Vagrantfile and run this tool:'
+    echo './tools/site-add new-site.local'
+    exit
+fi
+
 host=$1;
 ip=10.4.4.4;
 local_available=$(pwd)/etc/nginx/sites-available;

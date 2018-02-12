@@ -76,4 +76,8 @@ Not configured, though.
 
 4. Configure nginx hosts using provided template config (or write your own).
 
+    ```
+    $ ./tools/site-add new-site.local
+    ```
+
 5. All done.
