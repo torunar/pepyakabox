@@ -39,6 +39,8 @@ Available modules:
 * soap 
 * imagick
 * xdebug
+* bcmath
+* imap
 
 ### git
 
@@ -67,6 +69,7 @@ Not configured, though.
 	```
 	$ cd pepyakabox
 	```
+
 	```
 	$ vagrant up
 	```

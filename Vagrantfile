@@ -17,14 +17,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/srv', nfs: true
   config.vm.synced_folder './etc/nginx/sites-available', '/etc/nginx/sites-available', nfs: true
   config.vm.synced_folder './etc/nginx/ssl', '/etc/nginx/ssl', nfs: true
+  config.vm.synced_folder './var/log', '/var/log', nfs: true
 
   config.vm.provider "virtualbox" do |v|
     v.gui = false
-	v.memory = 3072
-	v.cpus = 2
+    v.memory = 3072
+    v.cpus = 2
 
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
-	v.customize ["modifyvm", :id, "--acpi", "off"]
+    v.customize ["modifyvm", :id, "--acpi", "off"]
   end
 end
-
