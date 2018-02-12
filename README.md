@@ -74,7 +74,7 @@ Not configured, though.
 	$ vagrant up
 	```
 
-4. Configure nginx hosts using provided template config (or write your own).
+4. Configure nginx hosts using provided template config (or write your own):
 
     ```
     $ ./tools/site-add new-site.local
