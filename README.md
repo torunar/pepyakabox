@@ -8,8 +8,9 @@ Pepyakas included.
 
 ### nginx
 
-Somewhat "universal" config can be found in `/etc/nginx/sites-available/template`.
-Website logs are stored under `/srv/log/<project_name>/`
+Somewhat universal config can be found in `etc/nginx/sites-available/template`.
+
+Site logs are stored in the `log/<project_name>/` directory.
 
 ### MySQL 5.6
 
@@ -49,7 +50,7 @@ Available modules:
 
 ### E-mail catcher
 
-Catches all e-mails sent with `mail()` PHP function and stores them under `/srv/log/sendmail/`.
+Catches all e-mails sent with `mail()` PHP function and stores them in the `log/sendmail/` directory.
 
 ### BlackFire Agent
 
@@ -75,10 +76,12 @@ Not configured, though.
 	$ vagrant up
 	```
 
-4. Configure nginx hosts using provided template config (or write your own):
+4. Put your source code into the `www/<project_name>.local` directory.
+
+5. Add new site using default nginx config:
 
     ```
-    $ ./tools/site-add new-site.local
+    $ ./tools/site-add <project_name>.local
     ```
 
-5. All done.
+6. All done.
