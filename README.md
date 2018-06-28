@@ -76,12 +76,12 @@ Not configured, though.
 	$ vagrant up
 	```
 
-4. Put your source code into the `www/<project_name>.local` directory.
+4. Put your source code into the `www/<project_name>` directory.
 
 5. Add new site using default nginx config:
 
     ```
-    $ ./tools/site-add <project_name>.local
+    $ ./tools/site-add <project_name>
     ```
 
 6. All done.
