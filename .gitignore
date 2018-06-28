@@ -1,0 +1,5 @@
+.vagrant
+log/*
+etc/nginx/sites-available/*
+etc/nginx/ssl/*
+www/*

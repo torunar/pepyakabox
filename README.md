@@ -9,6 +9,7 @@ Pepyakas included.
 ### nginx
 
 Somewhat "universal" config can be found in `/etc/nginx/sites-available/template`.
+Website logs are stored under `/srv/log/<project_name>/`
 
 ### MySQL 5.6
 
@@ -48,7 +49,7 @@ Available modules:
 
 ### E-mail catcher
 
-Catches all e-mails sent with `mail()` PHP function and stores them under `/srv/sendmail/log`.
+Catches all e-mails sent with `mail()` PHP function and stores them under `/srv/log/sendmail/`.
 
 ### BlackFire Agent
 

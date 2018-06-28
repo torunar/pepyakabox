@@ -3,8 +3,8 @@ server {
 	server_name template;
 	client_max_body_size 1024G;
 
-	access_log /var/log/nginx/template_access.log;
-	error_log  /var/log/nginx/template_error.log;
+	access_log /srv/log/nginx/template_access.log;
+	error_log  /srv/log/nginx/template_error.log;
 
     listen 443 ssl;
     ssl_certificate     /etc/nginx/ssl/template.crt;

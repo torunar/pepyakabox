@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
-	$mail_path = __DIR__ . '/log/';
+	$mail_path = '/srv/log/sendmail/';
 	@mkdir($mail_path);
 	$input = file_get_contents('php://stdin');
-	$name = microtime() . '.eml';
+	$name = str_replace('.', '', (string) microtime(true)) . '.eml';
 	file_put_contents($mail_path . $name, $input);
