@@ -23,7 +23,6 @@ mv "${local_available}/${host}.tmp" "${local_available}/${host}";
 echo 'Generating certs...'
 vagrant ssh -c "sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${remote_cert}/${host}.key -out ${remote_cert}/${host}.crt -subj '/C=AU/CN=${host}'"
 echo 'Restarting services...'
-cd ~/srv
 vagrant ssh -c "sudo ln -s '${remote_available}/${host}' '${remote_enabled}' && sudo service nginx restart";
 # local: add host
 echo 'Adding host...'
