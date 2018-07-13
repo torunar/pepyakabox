@@ -10,7 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", inline: "sudo service nginx restart", run: "always"
 
   config.vm.network "forwarded_port", guest: 80,    host: 8080
-  config.vm.network "forwarded_port", guest: 3306,  host: 3306
 
   config.vm.network "private_network", ip: "10.4.4.4"
 

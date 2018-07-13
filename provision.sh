@@ -44,8 +44,5 @@ do
 done
 sudo service nginx restart
 
-sudo sed -i".bak" 's/bind-address.*/bind-address=0.0.0.0/g' /etc/mysql/my.cnf
-sudo service mysql restart
-
 cp /srv/.profile /home/vagrant/.profile
 cp /srv/.vimrc /home/vagrant/.vimrc
