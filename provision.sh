@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 export DEBIAN_FRONTEND=noninteractive
 
+sudo apt-get update
+sudo apt-get install --yes --force-yes software-properties-common
+
 sudo add-apt-repository ppa:ondrej/php
 
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'

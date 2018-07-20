@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "minimal/trusty64"
   config.vm.hostname = "vagrant"
   config.vm.provision "shell", path: "provision.sh"
   config.vm.provision "shell", inline: "sudo service nginx restart", run: "always"
