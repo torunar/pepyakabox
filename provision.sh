@@ -47,5 +47,7 @@ do
 done
 sudo service nginx restart
 
+curl -sL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > /home/vagrant/git-prompt.sh
+
 cp /srv/.profile /home/vagrant/.profile
 cp /srv/.vimrc /home/vagrant/.vimrc
