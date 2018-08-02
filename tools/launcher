@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+cmd=$1
+
+case $cmd in
+nginx_restart)
+    vagrant ssh -c "sudo service nginx restart" -- -q
+    ;;
+fpm_restart)
+    vagrant ssh -c "sudo service php5.6-fpm restart" -- -q
+    vagrant ssh -c "sudo service php7.1-fpm restart" -- -q
+    ;;
+php56_cli)
+    vagrant ssh -c "php5.6 -a" -- -q
+    ;;
+php71_cli)
+    vagrant ssh -c "php7.1 -a" -- -q
+    ;;
+php_cli)
+    vagrant ssh -c "php -a" -- -q
+    ;;
+mysql_cli)
+    vagrant ssh -c "mysql -uroot -proot -h127.0.0.1" -- -q
+    ;;
+ssh)
+    vagrant ssh
+    ;;
+*)
+    echo 'Usage: launcher command'
+    echo ''
+    echo 'Available commands:'
+    echo '  nginx_restart   Restarts nginx web server'
+    echo '  fpm_restart     Restarts PHP fpm'
+    echo '  php56_cli       PHP 5.6 CLI'
+    echo '  php71_cli       PHP 7.1 CLI'
+    echo '  php_cli         Default PHP CLI'
+    echo '  mysql_cli       MySQL CLI'
+esac
