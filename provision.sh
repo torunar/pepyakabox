@@ -19,7 +19,8 @@ sudo apt-get install --yes --force-yes \
     unzip \
     nginx \
     mysql-server-5.6 \
-    git
+    git \
+    curl
 
 for ver in '7.1' '5.6'; do
     sudo apt-get install --yes --force-yes \
