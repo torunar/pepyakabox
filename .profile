@@ -19,7 +19,6 @@ fi
 PATH="$HOME/bin:$HOME/.composer/vendor/bin:$PATH"
 
 source /home/vagrant/git-prompt.sh
-source /srv/.bash_aliases
 
 if [[ ${EUID} == 0 ]] ; then
     export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w \[\033[33m\]$(__git_ps1 "%s ")\[\033[01;31m\]\#\[\033[00m\] '
