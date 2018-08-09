@@ -1,31 +1,42 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+cd `dirname "$0"`
+cd ../
+
 if [ ! -f  $(pwd)/Vagrantfile -o -z "$1" ]; then
     echo 'Go to the directory with your Vagrantfile and run this tool:'
     echo './tools/site-add new-site.local'
     exit
 fi
 
-host=$1;
-ip=10.4.4.4;
-local_available=$(pwd)/etc/nginx/sites-available;
-remote_cert=/etc/nginx/ssl;
-remote_available=/etc/nginx/sites-available;
-remote_enabled=/etc/nginx/sites-enabled;
+host=$1
+ip=10.4.4.4
+local_available=$(pwd)/etc/nginx/sites-available
+remote_cert=/etc/nginx/ssl
+remote_available=/etc/nginx/sites-available
+remote_enabled=/etc/nginx/sites-enabled
 
 # local: copy
 echo 'Copying...'
-cp "${local_available}/template" "${local_available}/${host}";
+cp "${local_available}/template" "${local_available}/${host}"
+
 # local: replace
 echo 'Replacing...'
-sed -e "s/template/${host}/g" "${local_available}/${host}" > "${local_available}/${host}.tmp";
-mv "${local_available}/${host}.tmp" "${local_available}/${host}";
-#  remote: generate cer
+sed -e "s/template/${host}/g" "${local_available}/${host}" > "${local_available}/${host}.tmp"
+mv "${local_available}/${host}.tmp" "${local_available}/${host}"
+
+# remote: generate cert
 echo 'Generating certs...'
 vagrant ssh -c "sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${remote_cert}/${host}.key -out ${remote_cert}/${host}.crt -subj '/C=AU/CN=${host}'"
+
+# remote: restart services
 echo 'Restarting services...'
-vagrant ssh -c "sudo ln -s '${remote_available}/${host}' '${remote_enabled}' && sudo service nginx restart";
-# local: add host
+vagrant ssh -c "sudo ln -s '${remote_available}/${host}' '${remote_enabled}' && sudo service nginx restart"
+
 echo 'Adding host...'
+# remote: add host
+vagrant ssh -c "echo 127.0.0.1 ${host} | sudo tee --append /etc/hosts"
+# local: add host
 sudo sh -c "echo '${ip} ${host}' >> /etc/hosts"
 
 echo 'Done!'

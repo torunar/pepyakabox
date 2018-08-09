@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd `dirname "$0"`
+
 cmd=$1
 
 case $cmd in
@@ -23,7 +25,7 @@ mysql_cli)
     vagrant ssh -c "mysql -uroot -proot -h127.0.0.1" -- -q
     ;;
 ssh)
-    vagrant ssh
+    vagrant ssh -- -q
     ;;
 *)
     echo 'Usage: launcher command'
@@ -35,4 +37,5 @@ ssh)
     echo '  php71_cli       PHP 7.1 CLI'
     echo '  php_cli         Default PHP CLI'
     echo '  mysql_cli       MySQL CLI'
+    echo '  ssh             SSH session'
 esac
