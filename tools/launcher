@@ -8,6 +8,9 @@ case $cmd in
 nginx_restart)
     vagrant ssh -c "sudo service nginx restart" -- -q
     ;;
+mysql_restart)
+    vagrant ssh -c "sudo service mysql restart" -- -q
+    ;;
 fpm_restart)
     vagrant ssh -c "sudo service php5.6-fpm restart" -- -q
     vagrant ssh -c "sudo service php7.1-fpm restart" -- -q
@@ -32,6 +35,7 @@ ssh)
     echo ''
     echo 'Available commands:'
     echo '  nginx_restart   Restarts nginx web server'
+    echo '  mysql_restart   Restarts MySQL database server'
     echo '  fpm_restart     Restarts PHP fpm'
     echo '  php56_cli       PHP 5.6 CLI'
     echo '  php71_cli       PHP 7.1 CLI'
