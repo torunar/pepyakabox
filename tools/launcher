@@ -30,6 +30,10 @@ mysql_cli)
 ssh)
     vagrant ssh -- -q
     ;;
+reload)
+    vagrant halt -f
+    vagrant up
+    ;;
 *)
     echo 'Usage: launcher command'
     echo ''
@@ -39,7 +43,8 @@ ssh)
     echo '  fpm_restart     Restarts PHP fpm'
     echo '  php56_cli       PHP 5.6 CLI'
     echo '  php71_cli       PHP 7.1 CLI'
-    echo '  php_cli         Default PHP CLI'
-    echo '  mysql_cli       MySQL CLI'
-    echo '  ssh             SSH session'
+    echo '  php_cli         Launch default PHP CLI'
+    echo '  mysql_cli       Launch MySQL CLI'
+    echo '  ssh             Start SSH session'
+    echo '  reload          Force reload'
 esac
