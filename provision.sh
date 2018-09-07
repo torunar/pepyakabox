@@ -22,10 +22,11 @@ sudo apt-get install --yes --force-yes \
     git \
     curl
 
+# install php with exts
 for ver in '7.1' '5.6'; do
     sudo apt-get install --yes --force-yes \
         php$ver-cli php$ver-mysql php$ver-fpm php$ver-curl php$ver-gd php$ver-xml php$ver-mbstring php$ver-zip php$ver-sqlite3 php$ver-mcrypt php$ver-intl php$ver-soap php$ver-imagick php$ver-imap php$ver-json php$ver-apcu php$ver-bcmath \
-        php-xdebug \
+        php$ver-dev \
         blackfire-agent
 
     for sapi in 'fpm' 'cli'; do
@@ -35,9 +36,26 @@ for ver in '7.1' '5.6'; do
     done
     
     sudo cp /srv/etc/php/mods-available/xdebug.ini /etc/php/$ver/mods-available/xdebug.ini
-    sudo service php$ver-fpm restart
 done
 
+# install xdebug ext from pecl
+ext_dir_56=$(php5.6 -r "echo ini_get('extension_dir');")
+ext_dir_71=$(php7.1 -r "echo ini_get('extension_dir');")
+
+sudo pecl -d php_suffix=5.6 -d extension_dir=$ext_dir_56 uninstall xdebug
+sudo pecl -d php_suffix=7.1 -d extension_dir=$ext_dir_71 uninstall xdebug
+
+sudo pecl -d php_suffix=5.6 -d extension_dir=$ext_dir_56 install xdebug-2.5.5
+sudo mv $ext_dir_56/xdebug.so $ext_dir_56/xdebug-5.6.so
+
+sudo pecl install xdebug
+sudo mv $ext_dir_56/xdebug-5.6.so $ext_dir_56/xdebug.so
+
+sudo phpenmod xdebug
+sudo service php7.1-fpm restart
+sudo service php5.6-fpm restart
+
+# enable sites
 sudo rm -rf /etc/nginx/sites-enabled/*
 cd /etc/nginx/sites-available/
 for i in *
