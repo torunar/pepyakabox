@@ -21,6 +21,12 @@ php56_cli)
 php71_cli)
     vagrant ssh -c "php7.1 -a" -- -q
     ;;
+set_php56)
+    vagrant ssh -c "sudo update-alternatives --set php /usr/bin/php5.6" -- -q
+    ;;
+set_php71)
+    vagrant ssh -c "sudo update-alternatives --set php /usr/bin/php7.1" -- -q
+    ;;
 php_cli)
     vagrant ssh -c "php -a" -- -q
     ;;
@@ -38,13 +44,15 @@ reload)
     echo 'Usage: launcher command'
     echo ''
     echo 'Available commands:'
-    echo '  nginx_restart   Restarts nginx web server'
-    echo '  mysql_restart   Restarts MySQL database server'
-    echo '  fpm_restart     Restarts PHP fpm'
-    echo '  php56_cli       PHP 5.6 CLI'
-    echo '  php71_cli       PHP 7.1 CLI'
-    echo '  php_cli         Launch default PHP CLI'
-    echo '  mysql_cli       Launch MySQL CLI'
-    echo '  ssh             Start SSH session'
+    echo '  nginx_restart   Restart nginx web server'
+    echo '  mysql_restart   Restart MySQL database server'
+    echo '  fpm_restart     Restart PHP fpm'
+    echo '  php56_cli       Run PHP 5.6 CLI'
+    echo '  php71_cli       Run PHP 7.1 CLI'
+    echo '  php_cli         Run default PHP CLI'
+    echo '  set_php56       Set PHP 5.6 as the default PHP executable'
+    echo '  set_php71       Set PHP 7.1 as the default PHP executable'
+    echo '  mysql_cli       Run MySQL CLI'
+    echo '  ssh             Run SSH session'
     echo '  reload          Force reload'
 esac
