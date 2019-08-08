@@ -5,38 +5,38 @@ cd `dirname "$0"`
 cmd=$1
 
 case $cmd in
-nginx_restart)
+nginx_reload|nginx_restart)
     vagrant ssh -c "sudo service nginx restart" -- -q
     ;;
-mysql_restart)
+mysql_reload|mysql_restart)
     vagrant ssh -c "sudo service mysql restart" -- -q
     ;;
-fpm_restart)
+fpm_reload|fpm_restart)
     vagrant ssh -c "sudo service php5.6-fpm restart" -- -q
-    vagrant ssh -c "sudo service php7.1-fpm restart" -- -q
+    vagrant ssh -c "sudo service php7.3-fpm restart" -- -q
     ;;
-php56_cli)
+php5_cli)
     vagrant ssh -c "php5.6 -a" -- -q
     ;;
-php71_cli)
-    vagrant ssh -c "php7.1 -a" -- -q
+php7_cli)
+    vagrant ssh -c "php7.3 -a" -- -q
     ;;
-set_php56)
+set_php5)
     vagrant ssh -c "sudo update-alternatives --set php /usr/bin/php5.6" -- -q
     ;;
-set_php71)
-    vagrant ssh -c "sudo update-alternatives --set php /usr/bin/php7.1" -- -q
+set_php7)
+    vagrant ssh -c "sudo update-alternatives --set php /usr/bin/php7.3" -- -q
     ;;
-php_cli)
+php|php_cli)
     vagrant ssh -c "php -a" -- -q
     ;;
-mysql_cli)
+mysql|mysql_cli)
     vagrant ssh -c "mysql -uroot -proot -h127.0.0.1" -- -q
     ;;
 ssh)
     vagrant ssh -- -q
     ;;
-reload)
+reload|restart)
     vagrant halt -f
     vagrant up
     ;;
@@ -44,15 +44,15 @@ reload)
     echo 'Usage: launcher command'
     echo ''
     echo 'Available commands:'
-    echo '  nginx_restart   Restart nginx web server'
-    echo '  mysql_restart   Restart MySQL database server'
-    echo '  fpm_restart     Restart PHP fpm'
-    echo '  php56_cli       Run PHP 5.6 CLI'
-    echo '  php71_cli       Run PHP 7.1 CLI'
-    echo '  php_cli         Run default PHP CLI'
-    echo '  set_php56       Set PHP 5.6 as the default PHP executable'
-    echo '  set_php71       Set PHP 7.1 as the default PHP executable'
-    echo '  mysql_cli       Run MySQL CLI'
-    echo '  ssh             Run SSH session'
-    echo '  reload          Force reload'
+    echo '  nginx_reload  nginx_restart   Restart nginx web server'
+    echo '  mysql_reload  mysql_restart   Restart MySQL database server'
+    echo '  fpm_reload    fpm_restart     Restart PHP fpm'
+    echo '  php5_cli                      Run PHP 5.x CLI'
+    echo '  php7_cli                      Run PHP 7.x CLI'
+    echo '  php           php_cli         Run default PHP CLI'
+    echo '  set_php5                      Set PHP 5.x as the default PHP executable'
+    echo '  set_php7                      Set PHP 7.x as the default PHP executable'
+    echo '  mysql         mysql_cli       Run MySQL CLI'
+    echo '  ssh                           Run SSH session'
+    echo '  reload        restart         Force reload'
 esac

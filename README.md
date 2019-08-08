@@ -1,6 +1,6 @@
 # PepyakaBox
 
-Vagrant box for amateur PHP development.
+Vagrant box for PHP development.
 
 Pepyakas included.
 
@@ -12,7 +12,7 @@ Somewhat universal config can be found in `etc/nginx/sites-available/template`.
 
 Site logs are stored in the `log/<project_name>/` directory.
 
-### MySQL 5.6
+### MySQL 5.7
 
 Default user: `root`.
 
@@ -25,7 +25,7 @@ Both FPM and CLI.
 Available versions:
 
 * 5.6
-* 7.1
+* 7.3
 
 Available modules:
 
@@ -51,10 +51,6 @@ Available modules:
 ### E-mail catcher
 
 Catches all e-mails sent with `mail()` PHP function and stores them in the `log/sendmail/` directory.
-
-### BlackFire Agent
-
-Not configured, though.
 
 ## How do I shot the web?
 

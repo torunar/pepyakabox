@@ -4,7 +4,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "minimal/trusty64"
+  config.ssh.shell="bash"
+  config.vm.box = "cookapp/ubuntu1804"
+
   config.vm.hostname = "vagrant"
   config.vm.provision "shell", path: "provision.sh"
   config.vm.provision "shell", inline: "sudo service nginx restart", run: "always"
@@ -18,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.gui = false
     v.memory = 1536
+    v.cpus = 1
 
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
     v.customize ["modifyvm", :id, "--acpi", "off"]

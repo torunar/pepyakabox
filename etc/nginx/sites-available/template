@@ -3,7 +3,7 @@ server {
     server_name template;
     client_max_body_size 1024G;
 
-    access_log /srv/log/nginx/template_access.log;
+    access_log /dev/null;
     error_log  /srv/log/nginx/template_error.log;
 
     listen 443 ssl;
@@ -21,11 +21,13 @@ server {
     }
 
     location ~ [^/]\.php(/|$) {
-        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-        fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_index index.php;
+        set $path_info $fastcgi_path_info;
+        fastcgi_param PATH_INFO $path_info;
+        include fastcgi.conf;
+
+        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
         fastcgi_read_timeout 1h;
-        include fastcgi_params;
     }
 }
-
