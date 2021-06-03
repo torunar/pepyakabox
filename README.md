@@ -59,7 +59,7 @@ Catches all e-mails sent with `mail()` PHP function and stores them in the `log/
 1. Clone the repo:
 
 	```
-	$ git clone git@bitbucket.org:torunar/pepyakabox.git pepyakabox
+	$ git clone git@github.com:torunar/pepyakabox.git
 	```
 
 1. Provision the enviroment:
